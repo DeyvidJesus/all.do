@@ -1,0 +1,19 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+    background-color: #FCFCFC;
+}
+
+.active {
+    visibility: visible;
+    transform: translateY(0);
+    transition: 500ms ease-in-out;
+}
+
+.inactive {
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: 500ms ease-in-out;
+}
