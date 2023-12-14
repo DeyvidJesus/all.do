@@ -3,9 +3,9 @@ import { Sidebar } from "../components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <main>
+    <main className="flex">
       <Sidebar />
-      <TaskList />
+      <TaskList actualPage={'Inbox'}/>
     </main>
   )
 }
