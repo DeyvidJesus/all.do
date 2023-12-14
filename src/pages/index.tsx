@@ -1,8 +1,12 @@
+import { TaskList } from "../components/Main/TaskList";
 import { Sidebar } from "../components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <Sidebar />
+    <main>
+      <Sidebar />
+      <TaskList />
+    </main>
   )
 }
 

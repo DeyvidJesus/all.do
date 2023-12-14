@@ -3,7 +3,7 @@ import { Userinfo } from "./Userinfo";
 
 let UserInfo = {
     username: "Deyvid",
-    userImg: "userImg.svg",
+    userImg: "/userImg.svg",
 }
 
 export function Sidebar() {
