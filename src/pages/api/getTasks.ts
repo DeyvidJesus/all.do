@@ -6,17 +6,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { actualPage, search } = req.query;
 
-    let query;
-
-    if (search !== '') {
-        query = `project: ${actualPage}, name: ${search}`;
-    } else {
-        query = `project: ${actualPage}`
-    }
-
+    
     try {
-        const tasksData = await collection.find({query}).toArray();
-        res.status(200).json(tasksData);
+        console.log(actualPage, search);
+        if (search !== undefined) {
+            const tasksData = await collection.find({project: actualPage, name: search}).toArray();
+            res.status(200).json(tasksData);
+        } else {
+            const tasksData = await collection.find({project: actualPage}).toArray();
+            res.status(200).json(tasksData);
+        }
     } catch (err) {
         console.log(err)
         res.status(500).json({ error: 'Internal Server Error' });
