@@ -6,9 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { actualPage, search } = req.query;
 
-    
     try {
-        console.log(actualPage, search);
         if (search !== undefined) {
             const tasksData = await collection.find({project: actualPage, name: search}).toArray();
             res.status(200).json(tasksData);
