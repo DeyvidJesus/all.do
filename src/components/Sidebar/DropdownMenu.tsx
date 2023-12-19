@@ -1,3 +1,4 @@
+import { useDarkMode } from "@/context/useDarkMode";
 import Image from "next/image";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
@@ -8,6 +9,7 @@ interface UserInfo {
 }
 
 export function DropdownMenu({ username, userImg, children }: UserInfo) {
+    const { darkMode } = useDarkMode();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
