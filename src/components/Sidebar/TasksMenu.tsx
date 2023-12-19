@@ -1,4 +1,4 @@
-import { AddTaskButton } from "./AddTaskButton";
+import { AddTaskButton } from "../AddTaskButton";
 import { FilterMenu } from "./FilterMenu";
 
 export function TasksMenu() {
