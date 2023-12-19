@@ -1,4 +1,4 @@
-import connect from "@/services/database";
+import connect from "@/utils/database";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
