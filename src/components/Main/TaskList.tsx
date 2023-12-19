@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AddTaskButton } from "../Sidebar/AddTaskButton";
+import { AddTaskButton } from "../AddTaskButton";
 import { TaskItem } from "./TaskItem";
 
 interface TaskListProps {
@@ -48,9 +48,9 @@ export function TaskList({ actualPage }: TaskListProps) {
             <h1 className="font-serif text-4xl font-semibold my-5">{actualPage}</h1>
             <AddTaskButton />
 
-            <ul>
+            <ul className="w-full">
                 {apiData.map((item) => (
-                    <TaskItem key={item._id} name={item.name} description={item.description} deadline={item.deadline} status={item.status} />
+                    <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} />
                 ))}
             </ul>
         </div>
