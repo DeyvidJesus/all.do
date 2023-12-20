@@ -57,23 +57,14 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
             {checked && <Image className="absolute ml-1 cursor-pointer" src='/verified.svg' alt='' height={24} width={24} onClick={handleCheckboxChange} />}
 
             <div className="ml-4">
-                {checked && (
-                    <>
-                        <h1 className="font-bold text-xl line-through">{name}</h1>
-                        <p className="text-lg line-through">{description}</p>
-                    </>
-                )}
 
-                {!checked && (
-                    <>
-                        <h1 className="font-bold text-xl">{name}</h1>
-                        <p className="text-lg">{description}</p>
-                    </>
-                )}
+                <h1 className={`font-bold text-xl ${checked ? 'line-through' : ''}`}>{name}</h1>
+                <p className={`text-lg ${checked ? 'line-through' : ''}`}>{description}</p>
+
             </div>
             <div className="flex flex-col items-center ml-auto w-24">
                 <Image src={calendarSrc} alt='' width={32} height={32} />
-                <h2>{dayOfWeek}</h2>
+                <h2 className={`${checked ? 'line-through' : ''}`}>{dayOfWeek}</h2>
             </div>
         </li>
     );
