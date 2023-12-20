@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { collection } = await connect();
 
-    const { actualPage } = req.query;
+    const { actualPage, search } = req.query;
 
     try {
         let query;
@@ -23,6 +23,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 break;
             case 'all':
                 query = {}
+                break;
+            case 'search':
+                query = {
+                    $or: [
+                        { name: { $regex: search, $options: 'i' } },
+                        { description: { $regex: search, $options: 'i' } },
+                    ],
+                }
                 break;
             default:
                 query = { project: actualPage }
