@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 
 export default function Page() {
     const router = useRouter();
-    let { slug } = router.query;
-    slug === undefined ? slug = '/' : slug;
+    const { query, isReady } = router;
+    const actualPage = isReady ? (query.slug || 'Inbox') : '/';
 
     return (
         <main className="flex">
             <Sidebar />
-            <TaskList actualPage={slug}/>
+            <TaskList actualPage={actualPage} isReady={isReady} />
         </main>
     );
 }
