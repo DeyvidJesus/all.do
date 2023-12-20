@@ -8,7 +8,7 @@ export default function Page() {
     const actualPage = isReady ? (query.slug || 'Inbox') : '/';
 
     return (
-        <main className="flex">
+        <main className="flex dark:bg-dark-blue">
             <Sidebar />
             <TaskList actualPage={actualPage} isReady={isReady} />
         </main>
