@@ -5,6 +5,7 @@ import { TaskItem } from "./TaskItem";
 
 interface TaskListProps {
     actualPage: string | string[],
+    isReady: boolean
 }
 
 interface ItemProps {
@@ -17,12 +18,14 @@ interface ItemProps {
 
 type ApiDataProps = Array<ItemProps>;
 
-export function TaskList({ actualPage }: TaskListProps) {
+export function TaskList({ actualPage, isReady }: TaskListProps) {
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
 
     useEffect(() => {
         async function FetchData() {
+            if (!isReady) return;
+
             const actualPageData = actualPage.toString().toLowerCase();
             let url = `/api/getTasks?actualPage=${actualPageData}`
 
@@ -37,7 +40,7 @@ export function TaskList({ actualPage }: TaskListProps) {
         }
 
         FetchData();
-    }, [])
+    }, [actualPage, search, isReady])
 
     return (
         <div className="flex flex-col px-16 py-8 w-3/4">
