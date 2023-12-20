@@ -1,9 +1,13 @@
 import { AddTaskButton } from "../AddTaskButton";
 import { FilterMenu } from "./FilterMenu";
 
-export function TasksMenu() {
+interface TasksMenuProps {
+    isShrunk: boolean,
+}
+
+export function TasksMenu({isShrunk}: TasksMenuProps) {
     return (
-        <div className="flex flex-col w-72 mt-36">
+        <div className={`flex flex-col ${isShrunk ? 'hidden' : 'w-72'} mt-36`}>
             <AddTaskButton />
             <FilterMenu />
         </div>
