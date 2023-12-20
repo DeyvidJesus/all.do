@@ -30,11 +30,12 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         async function FetchData() {
             if (!isReady) return;
 
-            const actualPageData = actualPage.toString().toLowerCase();
-            let url = `/api/getTasks?actualPage=${actualPageData}`
+            let actualPageData = actualPage.toString().toLowerCase();
+            let url = `/api/getTasks?actualPage=${actualPageData}`;
 
             if (search !== '') {
-                url = `/api/getTasks?actualPage=${actualPageData}&search${search}`;
+                actualPageData = 'search';
+                url = `/api/getTasks?actualPage=${actualPageData}&search=${search}`;
             }
 
             const response = await fetch(url);
@@ -47,7 +48,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     }, [actualPage, search, isReady])
 
     return (
-        <div className="flex flex-col px-16 py-8 w-3/4">
+        <div className="flex flex-col px-16 py-8 w-full">
             <div className="flex w-full bg-royal-blue p-2 rounded dark:bg-white">
                 <Image width={32} height={32} src={src} alt="" />
                 <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
