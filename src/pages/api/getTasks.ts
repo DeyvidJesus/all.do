@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { collection } = await connect();
 
-    const { actualPage, search } = req.query;
+    const { actualPage } = req.query;
 
     try {
         let query;
@@ -20,6 +20,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 query = {
                     deadline: { $gte: today },
                 };
+                break;
+            case 'all':
+                query = {}
                 break;
             default:
                 query = { project: actualPage }
