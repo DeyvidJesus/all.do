@@ -55,8 +55,8 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
                 <h1 className="font-bold text-xl">{name}</h1>
                 <p className="text-lg">{description}</p>
             </div>
-            <div className="flex flex-col items-center ml-auto">
-                <Image src='calendar.svg' alt='' width={32} height={32} />
+            <div className="flex flex-col items-center ml-auto w-24">
+                <Image src='/calendar.svg' alt='' width={32} height={32} />
                 <h2>{dayOfWeek}</h2>
             </div>
         </li>
