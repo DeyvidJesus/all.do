@@ -17,12 +17,12 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
-      'white': '#FCFCFC',
+      'white': '#E9E9E9',
       'light-blue': '#41A4FF',
       'dark-blue': '#003D75',
       'gray': '#3C3C3C',
       'black': '#000',
-      'hover-blue': '#007cff'
+      'royal-blue': '#007cff'
     },
     fontFamily: {
       serif: ['Podkova', 'serif'],
