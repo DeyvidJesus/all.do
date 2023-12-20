@@ -5,7 +5,7 @@ function App() {
   return (
     <main className="flex dark:bg-dark-blue">
       <Sidebar />
-      <TaskList actualPage={'Inbox'}/>
+      <TaskList actualPage={'Inbox'} isReady={true}/>
     </main>
   )
 }
