@@ -7,7 +7,7 @@ interface TasksMenuProps {
 
 export function TasksMenu({isShrunk}: TasksMenuProps) {
     return (
-        <div className={`flex flex-col ${isShrunk ? 'hidden' : 'w-72'} mt-36`}>
+        <div className={`flex flex-col ${isShrunk ? 'hidden' : 'sm:w-11/12 lg:w-10/12'} mb-10`}>
             <AddTaskButton />
             <FilterMenu />
         </div>

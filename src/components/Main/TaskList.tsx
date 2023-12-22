@@ -3,6 +3,7 @@ import Image from "next/image";
 import { AddTaskButton } from "../AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
+import { DarkModeToggle } from "../DarkModeToggle";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -49,11 +50,11 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
 
     return (
         <div className="flex flex-col px-16 py-8 w-full">
-            <div className="flex w-full bg-royal-blue p-2 rounded dark:bg-white">
-                <Image width={32} height={32} src={src} alt="" />
+            <div className="flex items-center w-full bg-royal-blue p-2 rounded dark:bg-white">
+                <Image className="sm:w-7 sm:h-7" width={32} height={32} src={src} alt="" />
                 <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
             </div>
-            <h1 className="font-serif text-4xl font-semibold my-5 dark:text-white">{actualPage}</h1>
+            <h1 className="font-serif sm:text-2xl md:text-3xl lg:text-4xl font-semibold my-5 dark:text-white">{actualPage}</h1>
             <AddTaskButton />
 
             <ul className="w-full mt-3 divide-y-2 divide-royal-blue dark:divide-white">

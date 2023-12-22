@@ -11,7 +11,7 @@ export function Sidebar() {
     };
 
     return (
-        <aside className={`flex flex-col items-center bg-white border-r-4 border-dark-blue w-1/3 h-screen font-semibold dark:text-white dark:bg-light-blue dark:border-white ${isShrunk ? 'w-28' : ''} transition-all ease-in-out delay-100`}>
+        <aside className={`flex flex-col items-center bg-white border-r-4 border-dark-blue w-1/3 min-h-screen h-full font-semibold dark:text-white dark:bg-light-blue dark:border-white ${isShrunk ? 'md:w-20 w-24' : ''} transition-all ease-in-out duration-700`}>
             <Userinfo isShrunk={isShrunk}>
                 <ShrinkButton onClick={handleShrinkToggle} />
             </Userinfo>

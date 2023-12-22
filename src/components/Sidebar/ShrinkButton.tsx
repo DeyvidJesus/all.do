@@ -11,7 +11,7 @@ export function ShrinkButton(props :ButtonProps) {
 
     return (
         <button className="cursor-pointer" {...props}>
-            <Image width={32} height={32} className="w-10" src={shrinkSrc} alt="Shrink Button"/>
+            <Image className="sm:w-8 sm:h-8 xl:w-10 xl:h-10" width={36} height={36} src={shrinkSrc} alt="Shrink Button"/>
         </button>
     );
 }
