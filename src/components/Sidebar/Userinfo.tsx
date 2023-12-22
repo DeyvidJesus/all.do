@@ -7,7 +7,7 @@ let UserInfo = {
 
 interface UserInfoProps {
     children: ReactNode;
-    isShrunk: boolean
+    isShrunk: boolean;
 }
 
 export function Userinfo({ children, isShrunk }: UserInfoProps) {

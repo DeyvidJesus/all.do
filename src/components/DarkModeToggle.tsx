@@ -8,5 +8,5 @@ export function DarkModeToggle() {
         <button onClick={() => toggleDarkMode()}>
             {darkMode ? <Image src='/dark-mode-moon.svg' alt='' width={24} height={24} /> : <Image src='/light-mode-sun.svg' alt='' width={24} height={24} />}
         </button>
-    )
+    );
 }

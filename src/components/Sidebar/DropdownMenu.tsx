@@ -70,5 +70,5 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
             </div>
             {children}
         </div>
-    )
+    );
 }
