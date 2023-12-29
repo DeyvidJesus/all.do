@@ -2,7 +2,7 @@ import { useDarkMode } from "@/context/useDarkMode";
 import Image from "next/image";
 import { ComponentProps } from "react";
 
-export type ButtonProps = ComponentProps<'button'>;
+type ButtonProps = ComponentProps<'button'>;
 
 export function ShrinkButton(props :ButtonProps) {
     const { darkMode } = useDarkMode();
