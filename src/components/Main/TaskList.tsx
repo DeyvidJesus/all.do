@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AddTaskButton } from "../AddTaskButton";
+import { AddTaskButton } from "../Utils/AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
-import { DarkModeToggle } from "../DarkModeToggle";
+import { AddTaskForm } from "./AddTaskForm";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -24,6 +24,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     const { darkMode } = useDarkMode();
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
+    const [isAddTaskFormVisible, setIsAddTaskFormVisible] = useState(false);
 
     let src = darkMode == true ? '/searchDark.svg' : '/search.svg'
 
@@ -46,7 +47,13 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         }
 
         FetchData();
-    }, [actualPage, search, isReady])
+    }, [actualPage, search, isReady]);
+
+    function closeModal(e: any) {
+        if (e.target === e.currentTarget) {
+            setIsAddTaskFormVisible(false);
+        }
+    }
 
     return (
         <div className="flex flex-col px-16 py-8 w-full">
@@ -55,13 +62,20 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
                 <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
             </div>
             <h1 className="font-serif sm:text-2xl md:text-3xl lg:text-4xl font-semibold my-5 dark:text-white">{actualPage}</h1>
-            <AddTaskButton />
+            <AddTaskButton onClick={() => setIsAddTaskFormVisible(!isAddTaskFormVisible)} />
+
+            {isAddTaskFormVisible &&
+                <div className="absolute w-screen top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
+                    <AddTaskForm />
+                </div>
+            }
 
             <ul className="w-full mt-3 divide-y-2 divide-royal-blue dark:divide-white">
                 {apiData.map((item) => (
                     <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} />
                 ))}
             </ul>
+
         </div>
     );
 }
