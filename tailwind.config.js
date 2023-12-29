@@ -22,7 +22,9 @@ module.exports = {
       'dark-blue': '#003D75',
       'gray': '#3C3C3C',
       'black': '#000',
-      'royal-blue': '#007cff'
+      'royal-blue': '#007cff',
+      'red': '#CD0000',
+      'transparent-gray': 'rgba(60, 60, 60, 0.5)'
     },
     fontFamily: {
       serif: ['Podkova', 'serif'],
