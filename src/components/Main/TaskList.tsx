@@ -3,7 +3,7 @@ import Image from "next/image";
 import { AddTaskButton } from "../Utils/AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
-import { AddTaskForm } from "./AddTaskForm";
+import { AddTaskForm } from "../Utils/AddTaskForm";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -49,7 +49,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         FetchData();
     }, [actualPage, search, isReady]);
 
-    function closeModal(e: any) {
+    function closeModal(e: React.SyntheticEvent) {
         if (e.target === e.currentTarget) {
             setIsAddTaskFormVisible(false);
         }
@@ -66,7 +66,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
 
             {isAddTaskFormVisible &&
                 <div className="absolute w-screen top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
-                    <AddTaskForm />
+                    <AddTaskForm closeModal={closeModal}/>
                 </div>
             }
 
