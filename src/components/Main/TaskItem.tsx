@@ -72,4 +72,3 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
         </li>
     );
 }
-
