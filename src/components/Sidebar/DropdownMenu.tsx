@@ -1,7 +1,7 @@
 import { useDarkMode } from "@/context/useDarkMode";
 import Image from "next/image";
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { DarkModeToggle } from "../Utils/DarkModeToggle";
+import { DarkModeToggle } from "../DarkModeToggle";
 
 interface UserInfo {
     username: string,

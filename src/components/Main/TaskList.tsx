@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { AddTaskButton } from "../Utils/AddTaskButton";
+import { AddTaskButton } from "./AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
-import { AddTaskForm } from "../Utils/AddTaskForm";
+import { AddTaskForm } from "./AddTaskForm";
 
 interface TaskListProps {
     actualPage: string | string[],

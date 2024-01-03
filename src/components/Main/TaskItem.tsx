@@ -1,7 +1,7 @@
 import { useDarkMode } from "@/context/useDarkMode";
 import Image from "next/image";
 import React, { useState } from "react";
-import { DeleteTaskButton } from "../Utils/DeleteTaskButton";
+import { DeleteTaskButton } from "./DeleteTaskButton";
 import { parse, getDay } from 'date-fns';
 
 interface ItemProps {
