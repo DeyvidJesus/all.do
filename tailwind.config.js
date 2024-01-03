@@ -24,6 +24,7 @@ module.exports = {
       'black': '#000',
       'royal-blue': '#007cff',
       'red': '#CD0000',
+      'light-gray': '#E5E5E5',
       'transparent-gray': 'rgba(60, 60, 60, 0.5)'
     },
     fontFamily: {
