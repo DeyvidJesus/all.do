@@ -2,7 +2,8 @@ import connect from "@/utils/database";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const { collection } = await connect();
+    const { db } = await connect();
+    const collection = db.collection("tasks");
 
     const { actualPage, search } = req.query;
 

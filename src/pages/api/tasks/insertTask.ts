@@ -12,19 +12,18 @@ interface FormDataProps {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const { collection } = await connect();
+    const { db } = await connect();
+    const collection = db.collection("tasks");
 
     const { formData }: FormDataProps = req.body;
 
-    const name = formData.name
-    const description = formData.description;
-    const deadline = formData.deadline;
+    const { name, description, deadline, project } = formData
 
     const [year, month, day] = deadline.split("-");
 
     const formattedDeadline = new Date(`${month}/${day}/${year}`).toLocaleDateString("en-US");
 
-    if (name == null || description == null || deadline == null) {
+    if (name == null || description == null || deadline == null || project == null) {
       res.status(400).json({ success: false, error: "The request is malformed or contains invalid parameters" });
       return;
     }
@@ -32,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const newDate = new Date().toLocaleDateString('en-US');
 
     try {
-      collection.insertOne({ name, description, deadline: formattedDeadline, created_at: newDate, status: 'pending', project: 'inbox' });
+      collection.insertOne({ name, description, deadline: formattedDeadline, created_at: newDate, status: 'pending', project });
 
       res.status(200).json({ success: true });
     } catch (error) {
