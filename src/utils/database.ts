@@ -14,7 +14,6 @@ export default async function connect() {
     await client.connect();
 
     const db = client.db("alldo");
-    const collection = db.collection("tasks");
 
-    return {db, collection, client};
+    return {db, client};
 }
