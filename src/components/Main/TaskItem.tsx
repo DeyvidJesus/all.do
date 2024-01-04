@@ -31,7 +31,7 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
 
     async function updateBackendStatus(newStatus: string) {
         try {
-            await fetch('/api/updateStatus', {
+            await fetch('/api/tasks/updateStatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

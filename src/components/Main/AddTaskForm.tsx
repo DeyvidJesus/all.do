@@ -20,7 +20,7 @@ export function AddTaskForm({closeModal}: AddTaskFormProps) {
         e.preventDefault();
 
         try {
-            await fetch('/api/insertTask', {
+            await fetch('/api/tasks/insertTask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

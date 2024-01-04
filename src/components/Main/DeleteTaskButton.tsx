@@ -15,7 +15,7 @@ export function DeleteTaskButton({ id }: DeleteTaskProps) {
 
     async function handleConfirmDelete() {
         try {
-            await fetch('/api/deleteTask', {
+            await fetch('/api/tasks/deleteTask', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

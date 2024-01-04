@@ -33,11 +33,11 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             if (!isReady) return;
 
             let actualPageData = actualPage.toString().toLowerCase();
-            let url = `/api/getTasks?actualPage=${actualPageData}`;
+            let url = `/api/tasks/getTasks?actualPage=${actualPageData}`;
 
             if (search !== '') {
                 actualPageData = 'search';
-                url = `/api/getTasks?actualPage=${actualPageData}&search=${search}`;
+                url = `/api/tasks/getTasks?actualPage=${actualPageData}&search=${search}`;
             }
 
             const response = await fetch(url);
