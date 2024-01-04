@@ -4,7 +4,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'DELETE') {
-        const { collection } = await connect();
+        const { db } = await connect();
+        const collection = db.collection("tasks");
 
         const { id } = req.body;
 
