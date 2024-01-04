@@ -1,15 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface AddTaskFormProps {
     closeModal: (e: React.SyntheticEvent) => void
 }
 
-export function AddTaskForm({closeModal}: AddTaskFormProps) {
+export interface projectData {
+    name: string,
+    color: string,
+    _id: string,
+}
+
+export function AddTaskForm({ closeModal }: AddTaskFormProps) {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        deadline: ''
-    })
+        deadline: '',
+        project: '',
+    });
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const response = await fetch("/api/projects/getProjects")
+                const data = await response.json();
+                setProjects(data);
+            } catch (err) {
+                console.log("Error while fetching projects data", err)
+            }
+        }
+
+        fetchProjects();
+    }, [])
 
     function handleChange(e: React.SyntheticEvent) {
         const { name, value } = e.target as HTMLInputElement;
@@ -35,7 +58,7 @@ export function AddTaskForm({closeModal}: AddTaskFormProps) {
     }
 
     return (
-        <form className="w-128 h-96 bg-light-blue px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddTask}>
+        <form className="w-128 h-[28rem] bg-light-blue px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddTask}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Add Task Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>
@@ -54,6 +77,18 @@ export function AddTaskForm({closeModal}: AddTaskFormProps) {
                 <span className="w-full">
                     <label className="font-semibold text-lg" htmlFor="deadline">Task Deadline:</label>
                     <input className="p-1 w-full border-2 rounded border-gray" type="date" name="deadline" id="deadline" onChange={handleChange} />
+                </span>
+
+                <span className="w-full flex flex-col">
+                    <label className="font-semibold text-lg" htmlFor="project">Task Project:</label>
+                    <select className="rounded p-1" name="project" id="project" onChange={handleChange}>
+                        <option value="inbox">Inbox</option>
+                        {projects.length > 0 && projects.map((project: projectData) => (
+                            <option key={project._id} value={project.name.toLowerCase()}>
+                                {project.name}
+                            </option>
+                        ))}
+                    </select>
                 </span>
 
                 <span className="w-full">
