@@ -1,5 +1,7 @@
 import { useDarkMode } from "@/context/useDarkMode";
 import { FilterItem } from "./FilterItem";
+import { useEffect, useState } from "react";
+import { projectData } from "../Main/AddTaskForm";
 
 export function FilterMenu() {
     const { darkMode } = useDarkMode();
@@ -11,12 +13,32 @@ export function FilterMenu() {
         allSrc: darkMode == true ? '/allTasks.svg' : '/allTasksDark.svg',
     }
 
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const response = await fetch("/api/projects/getProjects");
+                const data = await response.json();
+                setProjects(data);
+            } catch (err) {
+                console.log("Error while fetching projects data", err)
+            }
+        }
+
+        fetchProjects();
+        console.log(projects);
+    }, [])
+
     return (
         <ul>
             <FilterItem icon={srcObj.inboxSrc} name="Inbox" />
             <FilterItem icon={srcObj.todaySrc} name="Today" />
             <FilterItem icon={srcObj.upcomingSrc} name="Upcoming" />
             <FilterItem icon={srcObj.allSrc} name="All" />
+            {projects.length > 0 && projects.map((project: projectData) => (
+                <FilterItem key={project._id} icon={""} id={project._id} name={project.name} color={project.color}/>
+            ))}
         </ul>
     );
 }
