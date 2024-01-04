@@ -7,11 +7,11 @@ export default function Login() {
         <AuthLayout>
             <div className="w-2/3">
                 <span className="flex items-center">
-                    <Image src="/favicon.svg" alt="" width={48} height={48} />
-                    <h1 className="text-4xl text-dark-blue ml-3">All.do</h1>
+                    <Image src="/favicon.svg" alt="" width={40} height={40} />
+                    <h1 className="text-3xl font-bold text-dark-blue ml-3">All.do</h1>
                 </span>
                 <div>
-                    <h2 className="text-3xl font-bold mt-4">Log in to your account.</h2>
+                    <h2 className="text-3xl font-bold mt-2">Log in to your account.</h2>
                     <h3 className="text-gray text-lg mb-2">Welcome back! You can use social log in:</h3>
                     <span className="flex justify-between">
                         <button className="w-1/2 flex justify-center items-center border-solid border-2 border-light-gray py-2 mr-2 hover:opacity-80">
@@ -22,7 +22,7 @@ export default function Login() {
                         </button>
                     </span>
                 </div>
-                <span className="flex justify-between w-full items-center text-gray font-bold my-4">
+                <span className="flex justify-between w-full items-center text-gray font-bold my-2">
                     <hr className="w-1/3 border-[1px]"/>
                     <p>Or use your email</p>
                     <hr className="w-1/3 border-[1px]"/>
