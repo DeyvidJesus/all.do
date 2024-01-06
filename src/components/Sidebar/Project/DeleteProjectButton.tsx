@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { useState } from "react";
 import { ConfirmationPopup } from "../../Main/ConfirmationPopup";
+import { useRouter } from "next/router";
 
 interface DeleteProjectProps {
     id: string | undefined,
@@ -8,6 +9,7 @@ interface DeleteProjectProps {
 
 export function DeleteProjectButton({ id }: DeleteProjectProps) {
     const [isConfirmationVisible, setConfirmationVisible] = useState(false);
+    const router = useRouter();
 
     const handleDeleteTask = () => {
         setConfirmationVisible(true);
@@ -23,6 +25,7 @@ export function DeleteProjectButton({ id }: DeleteProjectProps) {
                 body: JSON.stringify({ id }),
             });
 
+            await router.push('/tasks/Inbox');
             window.location.reload();
         } catch (error) {
             console.error('Error updating status:', error);
@@ -37,7 +40,7 @@ export function DeleteProjectButton({ id }: DeleteProjectProps) {
 
     return (
         <div className="self-center">
-            <button className="flex flex-col items-center text-red ml-4 hover:brightness-75" onClick={handleDeleteTask}>
+            <button type="button" className="flex flex-col items-center text-red ml-4 hover:brightness-75" onClick={handleDeleteTask}>
                 <Image src={'/trash.svg'} width={24} height={24} alt='' />
                 <h2 className={`sm:text-sm md:text-lg`}>Delete</h2>
             </button>
