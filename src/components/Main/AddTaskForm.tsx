@@ -15,7 +15,7 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
         name: '',
         description: '',
         deadline: '',
-        project: '',
+        project: 'inbox',
     });
 
     const [projects, setProjects] = useState([]);
