@@ -27,7 +27,6 @@ export function FilterMenu() {
         }
 
         fetchProjects();
-        console.log(projects);
     }, [])
 
     return (
