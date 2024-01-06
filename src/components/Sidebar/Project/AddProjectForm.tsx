@@ -34,7 +34,7 @@ export function AddProjectForm({closeModal}: AddProjectFormProps) {
     }
 
     return (
-        <form className="w-128 h-80 bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddProject}>
+        <form className="w-128 h-80 bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif dark:text-black" onSubmit={handleAddProject}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Add Project Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>
@@ -48,7 +48,7 @@ export function AddProjectForm({closeModal}: AddProjectFormProps) {
                 <span className="w-full flex flex-col">
                     <label className="font-semibold text-lg" htmlFor="color">Project Color:</label>
                     <small className="text-gray">Select a color to represent your project.</small>
-                    <input className=" w-full border-2 rounded border-gray" type="color" name="color" id="color" onChange={handleChange}/>
+                    <input className=" w-full border-2 rounded border-gray" type="color" name="color" id="color" onChange={handleChange} defaultValue={"#000000"}/>
                 </span>
 
                 <span className="w-full">
