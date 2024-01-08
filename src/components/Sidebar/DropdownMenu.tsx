@@ -2,9 +2,10 @@ import { useDarkMode } from "@/context/useDarkMode";
 import Image from "next/image";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { DarkModeToggle } from "../DarkModeToggle";
+import { signOut } from "next-auth/react";
 
 interface UserInfo {
-    username: string,
+    username: string | undefined | null,
     isShrunk: boolean,
     children: ReactNode,
 }
@@ -38,7 +39,7 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
             <div className={`${isShrunk ? 'hidden' : ''}`}>
                 <div onClick={() => { setIsDropdownOpen(!isDropdownOpen); }} className="cursor-pointer sm:p-1 md:p-2 rounded hover:bg-royal-blue">
                     <div className="flex items-center justify-between w-auto cursor-pointer">
-                        <h2 className="sm:text-xl md:text-2xl lg:text-3xl font-serif font-semibold dark:text-white">{username}</h2>
+                        <h2 className="sm:text-xl md:text-2xl font-serif font-semibold dark:text-white">{username}</h2>
                         <Image className="sm:w-5 sm:h-5" width={28} height={28} src={srcObj.downArrowSrc} alt="Down arrow to indicate there's a menu" />
                     </div>
                 </div>
@@ -54,16 +55,10 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
                             </a>
                         </li>
                         <li>
-                            <a className="flex items-center hover:underline" href="">
-                                <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/notifications.svg" alt="" />
-                                <p className="sm:text-lg md:text-xl font-semibold font-serif">Notifications</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a className="flex items-center hover:underline" href="">
+                            <button className="flex items-center hover:underline" onClick={() => signOut({redirect: true, callbackUrl: '/'})}>
                                 <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/logout.svg" alt="" />
                                 <p className="sm:text-lg md:text-xl font-semibold font-serif">Logout</p>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </div>
