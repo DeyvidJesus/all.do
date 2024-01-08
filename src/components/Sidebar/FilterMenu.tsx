@@ -2,8 +2,10 @@ import { useDarkMode } from "@/context/useDarkMode";
 import { FilterItem } from "./FilterItem";
 import { useEffect, useState } from "react";
 import { projectData } from "../Main/AddTaskForm";
+import { useSession } from "next-auth/react";
 
 export function FilterMenu() {
+    const { data:session } = useSession();
     const { darkMode } = useDarkMode();
 
     let srcObj = {
@@ -18,7 +20,8 @@ export function FilterMenu() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch("/api/projects/getProjects");
+                const response = await fetch(`/api/projects/getProjects?user_email=${session?.user?.email}`);
+
                 const data = await response.json();
                 setProjects(data);
             } catch (err) {
@@ -27,7 +30,7 @@ export function FilterMenu() {
         }
 
         fetchProjects();
-    }, [])
+    }, [projects])
 
     return (
         <ul>
