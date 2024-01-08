@@ -1,12 +1,14 @@
 import Image from "next/image"
 import { useState } from "react";
 import { ConfirmationPopup } from "./ConfirmationPopup";
+import { useSession } from "next-auth/react";
 
 interface DeleteTaskProps {
     id: string,
 }
 
 export function DeleteTaskButton({ id }: DeleteTaskProps) {
+    const { data:session } = useSession();
     const [isConfirmationVisible, setConfirmationVisible] = useState(false);
 
     const handleDeleteTask = () => {
@@ -14,13 +16,15 @@ export function DeleteTaskButton({ id }: DeleteTaskProps) {
     };
 
     async function handleConfirmDelete() {
+        const user_email = session?.user?.email;
+
         try {
             await fetch('/api/tasks/deleteTask', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id }),
+                body: JSON.stringify({ id, user_email }),
             });
 
             window.location.reload();
