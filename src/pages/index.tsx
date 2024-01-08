@@ -1,7 +1,8 @@
 import { AuthLayout } from "@/components/Auth/AuthLayout";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
+import { GetServerSideProps } from "next";
 
 export default function Login() {
     return (
@@ -16,9 +17,9 @@ export default function Login() {
                     <h3 className="text-gray text-lg mb-2">Welcome back! You can use social log in:</h3>
                     <span className="flex justify-between">
                         <button className="w-1/2 flex justify-center items-center border-solid border-2 border-light-gray py-2 mr-2 hover:opacity-80"
-                            onClick={() => signIn('google')}
+                            onClick={() => signIn('github')}
                         >
-                            <Image src="/googleIcon.svg" alt="" width={40} height={40} />
+                            <Image src="/githubIcon.svg" alt="" width={40} height={40} />
                         </button>
                         <button className="w-1/2 flex justify-center items-center border-solid border-2 border-light-gray py-2 ml-2 hover:opacity-80"
                             onClick={() => signIn('facebook')}
@@ -47,4 +48,21 @@ export default function Login() {
             </div>
         </AuthLayout>
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+    const session = await getSession(context);
+
+    if (session) {
+        return {
+            redirect: {
+                destination: "/tasks/Inbox",
+                permanent: false,
+            }
+        }
+    }
+
+    return {
+        props: {}
+    }
 }
