@@ -4,6 +4,7 @@ import { AddTaskButton } from "./AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
 import { AddTaskForm } from "./AddTaskForm";
+import { useSession } from "next-auth/react";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -21,6 +22,7 @@ interface ItemProps {
 type ApiDataProps = Array<ItemProps>;
 
 export function TaskList({ actualPage, isReady }: TaskListProps) {
+    const { data:session } = useSession();
     const { darkMode } = useDarkMode();
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
@@ -33,11 +35,11 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             if (!isReady) return;
 
             let actualPageData = actualPage.toString().toLowerCase();
-            let url = `/api/tasks/getTasks?actualPage=${actualPageData}`;
+            let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
 
             if (search !== '') {
                 actualPageData = 'search';
-                url = `/api/tasks/getTasks?actualPage=${actualPageData}&search=${search}`;
+                url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
 
             const response = await fetch(url);
@@ -47,7 +49,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         }
 
         FetchData();
-    }, [actualPage, search, isReady]);
+    }, [actualPage, search, isReady, apiData]);
 
     function closeModal(e: React.SyntheticEvent) {
         if (e.target === e.currentTarget) {
@@ -56,7 +58,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     }
 
     return (
-        <div className="flex flex-col px-16 py-8 w-full">
+        <div className="flex flex-col px-16 py-8 w-full min-h-screen h-full">
             <div className="flex items-center w-full bg-royal-blue p-2 rounded dark:bg-white">
                 <Image className="sm:w-7 sm:h-7" width={32} height={32} src={src} alt="" />
                 <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
@@ -65,7 +67,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             <AddTaskButton onClick={() => setIsAddTaskFormVisible(!isAddTaskFormVisible)} />
 
             {isAddTaskFormVisible &&
-                <div className="absolute w-screen top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
+                <div className="fixed w-full top-0 left-0 h-full flex justify-center items-center bg-transparent-gray scroll" onClick={closeModal}>
                     <AddTaskForm closeModal={closeModal}/>
                 </div>
             }
