@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
 interface AddTaskFormProps {
@@ -11,11 +12,14 @@ export interface projectData {
 }
 
 export function AddTaskForm({ closeModal }: AddTaskFormProps) {
+    const { data:session } = useSession();
+
     const [formData, setFormData] = useState({
         name: '',
         description: '',
         deadline: '',
         project: 'inbox',
+        user_email: session?.user?.email,
     });
 
     const [projects, setProjects] = useState([]);
@@ -23,7 +27,7 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch("/api/projects/getProjects")
+                const response = await fetch(`/api/projects/getProjects?user_email=${session?.user?.email}`)
                 const data = await response.json();
                 setProjects(data);
             } catch (err) {
