@@ -2,7 +2,7 @@ import { TaskList } from "@/components/Main/TaskList";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { useRouter } from "next/router";
 
-export default function Page() {
+function Page() {
     const router = useRouter();
     const { query, isReady } = router;
     const actualPage = isReady ? (query.slug || 'Inbox') : '/';
@@ -13,4 +13,6 @@ export default function Page() {
             <TaskList actualPage={actualPage} isReady={isReady} />
         </main>
     );
-}
+} 
+
+export default Page;
