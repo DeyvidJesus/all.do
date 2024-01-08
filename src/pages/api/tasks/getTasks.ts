@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { db } = await connect();
     const collection = db.collection("tasks");
 
-    const { actualPage, search } = req.query;
+    const { actualPage, search, user_email } = req.query;
 
     try {
         let query;
@@ -13,28 +13,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         switch (actualPage) {
             case 'today':
                 const todayDateString = new Date().toLocaleDateString('en-US');
-                query = { deadline: todayDateString }
+                query = { deadline: todayDateString, user_email }
                 break;
             case 'upcoming':
                 const today = new Date().toLocaleDateString('en-US');
 
                 query = {
-                    deadline: { $gte: today },
+                    deadline: {
+                        $gte: today
+                    },
+                    user_email
                 };
                 break;
             case 'all':
-                query = {}
+                query = { user_email }
                 break;
             case 'search':
                 query = {
-                    $or: [
-                        { name: { $regex: search, $options: 'i' } },
-                        { description: { $regex: search, $options: 'i' } },
-                    ],
+                    $and: [
+                        { user_email },
+                        {
+                            $or: [
+                                { name: { $regex: search, $options: 'i' } },
+                                { description: { $regex: search, $options: 'i' } },
+                            ],
+                        }
+                    ]
                 }
                 break;
             default:
-                query = { project: actualPage }
+                query = { project: actualPage, user_email }
                 break;
         }
 
