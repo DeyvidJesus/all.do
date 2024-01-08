@@ -24,7 +24,7 @@ export function TasksMenu({ isShrunk }: TasksMenuProps) {
             </div>
 
             {isAddProjectFormVisible &&
-                <div className="absolute w-screen top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
+                <div className="fixed w-full top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
                     <AddProjectForm closeModal={closeModal} />
                 </div>
             }

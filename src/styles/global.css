@@ -17,3 +17,7 @@ body {
     transform: translateY(-20px);
     transition: 500ms ease-in-out;
 }
+
+.h-inherit {
+    height: inherit;
+}

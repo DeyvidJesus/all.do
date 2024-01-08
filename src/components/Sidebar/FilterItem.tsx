@@ -42,7 +42,7 @@ export function FilterItem({ id, icon, name, color }: FilterItemProps) {
             </Link>
 
             {isProjectFormVisible && (
-                <div className="absolute w-screen top-0 left-0 h-screen flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
+                <div className="fixed w-full top-0 left-0 h-full flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
                     <UpdateProjectForm closeModal={closeModal} id={id} name={name} color={color} />
                 </div>
             )}
