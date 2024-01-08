@@ -5,6 +5,7 @@ interface FormDataProps {
   formData: {
     name: string,
     color: string,
+    user_email: string
   }
 }
 
@@ -15,9 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const { formData }: FormDataProps = req.body;
 
-    const { name, color } = formData;
+    const { name, color, user_email } = formData;
 
-    if (name == null || color == null) {
+    if (name == null || color == null || user_email == null) {
       res.status(400).json({ success: false, error: "The request is malformed or contains invalid parameters" });
       return;
     }
@@ -25,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const newDate = new Date().toLocaleDateString('en-US');
 
     try {
-      collection.insertOne({ name, created_at: newDate, color});
+      collection.insertOne({ name, created_at: newDate, color, user_email});
 
       res.status(200).json({ success: true });
     } catch (error) {
