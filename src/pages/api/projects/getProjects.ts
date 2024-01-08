@@ -1,13 +1,14 @@
 import connect from "@/utils/database";
-import { NextApiResponse } from "next";
-import { NextRequest } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: NextRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { db } = await connect();
     const collection = db.collection("projects");
 
+    const { user_email } = req.query;
+
     try {
-        const projectsData = await collection.find({}).toArray();
+        const projectsData = await collection.find({user_email}).toArray();
         res.status(200).json(projectsData);
     } catch (err) {
         console.log(err)
