@@ -11,8 +11,8 @@ interface UpdateProjectFormProps {
 export function UpdateProjectForm({ closeModal, name, color, id }: UpdateProjectFormProps) {
     const [formData, setFormData] = useState({
         id,
-        name: '',
-        color: '',
+        name,
+        color,
     });
 
     function handleChange(e: React.SyntheticEvent) {
@@ -35,7 +35,7 @@ export function UpdateProjectForm({ closeModal, name, color, id }: UpdateProject
             console.error('Error updating status:', error);
         }
 
-        // window.location.reload();
+        window.location.reload();
     }
 
     return (
@@ -59,7 +59,7 @@ export function UpdateProjectForm({ closeModal, name, color, id }: UpdateProject
                 <span className="w-full">
                     <button className="w-full p-2 bg-dark-blue text-white rounded font-semibold hover:opacity-90 text-lg" type="submit">Update Project</button>
                 </span>
-            <DeleteProjectButton id={id} />
+            <DeleteProjectButton id={id} name={name}/>
             </div>
         </form>
     );
