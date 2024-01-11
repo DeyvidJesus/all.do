@@ -21,7 +21,7 @@ export function FilterItem({ id, icon, name, color }: FilterItemProps) {
     }
 
     let url;
-    url = `/tasks/${name}`;
+    url = `/app/${name}`;
 
     return (
         <li className="border-b-2 rounded border-royal-blue mt-4 dark:border-white">
