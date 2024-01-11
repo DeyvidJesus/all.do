@@ -17,6 +17,7 @@ interface ItemProps {
     description: string;
     deadline: string;
     status: string;
+    project: string,
 }
 
 type ApiDataProps = Array<ItemProps>;
@@ -74,7 +75,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
 
             <ul className="w-full mt-3 divide-y-2 divide-royal-blue dark:divide-white">
                 {apiData.map((item) => (
-                    <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} />
+                    <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} project={item.project}/>
                 ))}
             </ul>
 
