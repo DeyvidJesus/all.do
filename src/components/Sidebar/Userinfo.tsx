@@ -8,7 +8,8 @@ interface UserInfoProps {
 }
 
 export function Userinfo({ children, isShrunk }: UserInfoProps) {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
+    
     let name = session?.user?.name || '';
 
     if (name.length > 10) {
