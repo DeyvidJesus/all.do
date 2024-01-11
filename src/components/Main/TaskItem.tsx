@@ -3,21 +3,25 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { DeleteTaskButton } from "./DeleteTaskButton";
 import { parse, getDay } from 'date-fns';
+import { UpdateTaskForm } from "./UpdateTaskForm";
 
 interface ItemProps {
     id: string,
     name: string,
     description: string,
     deadline: string,
-    initialStatus: string
+    initialStatus: string,
+    project: string,
 }
 
-export function TaskItem({ id, name, description, deadline, initialStatus }: ItemProps) {
+export function TaskItem({ id, name, description, deadline, initialStatus, project }: ItemProps) {
     const { darkMode } = useDarkMode();
     const [status, setStatus] = useState(initialStatus);
     const [checked, setChecked] = useState(status === 'done');
+    const [isUpdateTaskFormVisible, setIsUpdateTaskFormVisible] = useState(false);
 
     let calendarSrc = darkMode == true ? '/calendarDark.svg' : '/calendar.svg';
+    let pencilSrc =  darkMode == true ? '/pencilDark.svg' : '/pencil.svg';
 
     function handleCheckboxChange() {
         const newChecked = !checked;
@@ -50,6 +54,12 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
         return daysOfWeek[dayIndex];
     }
 
+    function closeModal(e: React.SyntheticEvent) {
+        if (e.target === e.currentTarget) {
+            setIsUpdateTaskFormVisible(false);
+        }
+    }
+
     const dayOfWeek = getDayOfWeek(deadline);
 
     return (
@@ -67,8 +77,21 @@ export function TaskItem({ id, name, description, deadline, initialStatus }: Ite
                 <h2 className={`sm:text-sm md:text-lg ${checked ? 'line-through' : ''}`}>{dayOfWeek}</h2>
             </div>
             <div>
+                <span className="cursor-pointer hover:opacity-90" onClick={() => setIsUpdateTaskFormVisible(!isUpdateTaskFormVisible)}>
+                    <Image width={36} height={36} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8 " src={pencilSrc} alt={"Pencil icon"} />
+                    <p className="font-bold text-gray dark:text-white">Edit</p>
+                </span>
+            </div>
+            <div>
                 <DeleteTaskButton id={id} />
             </div>
+
+            {isUpdateTaskFormVisible && (
+                <div className="fixed w-full top-0 left-0 h-full flex justify-center items-center bg-transparent-gray" onClick={closeModal}>
+                    <UpdateTaskForm closeModal={closeModal} id={id} name={name} description={description} deadline={deadline} status={checked} project={project} />
+                </div>
+            )}
         </li>
+
     );
 }
