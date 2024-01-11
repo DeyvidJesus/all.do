@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { DarkModeToggle } from "../DarkModeToggle";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 interface UserInfo {
     username: string | undefined | null,
@@ -49,10 +50,10 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
                             <DarkModeToggle />
                         </li>
                         <li>
-                            <a className="flex items-center hover:underline" href="">
+                            <Link className="flex items-center hover:underline" href="">
                                 <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/settings.svg" alt="" />
                                 <p className="sm:text-lg md:text-xl font-semibold font-serif">Settings</p>
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <button className="flex items-center hover:underline" onClick={() => signOut({redirect: true, callbackUrl: '/'})}>
