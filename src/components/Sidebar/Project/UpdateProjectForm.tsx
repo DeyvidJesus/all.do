@@ -39,7 +39,7 @@ export function UpdateProjectForm({ closeModal, name, color, id }: UpdateProject
     }
 
     return (
-        <form className="w-128 h-96 bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif cursor-default dark:text-black" onSubmit={handleUpdateProject}>
+        <form className="w-2/3 h-[28rem] bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif cursor-default dark:text-black" onSubmit={handleUpdateProject}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Update Project Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>

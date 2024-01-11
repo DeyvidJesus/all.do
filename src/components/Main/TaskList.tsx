@@ -59,7 +59,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     }
 
     return (
-        <div className="flex flex-col px-16 py-8 w-full min-h-screen h-full">
+        <div className="flex flex-col sm:px-8 md:px-16 py-8 w-full min-h-screen h-full">
             <div className="flex items-center w-full bg-royal-blue p-2 rounded dark:bg-white">
                 <Image className="sm:w-7 sm:h-7" width={32} height={32} src={src} alt="" />
                 <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />

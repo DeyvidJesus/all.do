@@ -68,16 +68,16 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
     };
 
     return (
-        <form className="w-128 h-[28rem] bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif cursor-default dark:text-black" onSubmit={handleUpdateTask}>
+        <form className="w-2/3 h-[28rem] bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif cursor-default dark:text-black" onSubmit={handleUpdateTask}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Update Project Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>
             </span>
             <div className="flex flex-col justify-between w-full h-full my-4">
-                <span className="w-full flex flex-col">
+                <span className="w-full flex">
                     <label className="font-semibold text-lg" htmlFor="status">Task Status:</label>
 
-                    <input className="sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full appearance-none border-solid border-gray border checked:bg-dark-blue checked:dark:bg-royal-blue cursor-pointer dark:border-white" type="checkbox" name="status" checked={checked} onChange={handleCheckboxChange} />
+                    <input className="sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full appearance-none border-solid border-gray border checked:bg-dark-blue checked:dark:bg-royal-blue cursor-pointer dark:border-white ml-4" type="checkbox" name="status" checked={checked} onChange={handleCheckboxChange} />
 
                     {checked && <Image className="sm:w-4 sm:h-4 md:w-6 md:h-6 absolute ml-1 cursor-pointer mt-8" src='/verified.svg' alt='' height={24} width={24} onClick={handleCheckboxChange} />}
                 </span>

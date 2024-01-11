@@ -62,7 +62,7 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
     }
 
     return (
-        <form className="w-128 h-[28rem] bg-light-blue px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddTask}>
+        <form className="w-2/3 h-[28rem] bg-light-blue px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddTask}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Add Task Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>

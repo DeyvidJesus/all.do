@@ -11,7 +11,7 @@ export function Sidebar() {
     };
 
     return (
-        <aside className={`flex flex-col items-center bg-white border-r-4 border-dark-blue w-1/3 min-h-screen font-semibold dark:text-white dark:bg-light-blue dark:border-white ${isShrunk ? 'md:w-20 w-24' : ''} transition-all ease-in-out duration-700`}>
+        <aside className={`flex flex-col items-center bg-white border-r-4 border-dark-blue md:w-1/3 min-h-screen font-semibold dark:text-white dark:bg-light-blue dark:border-white ${isShrunk ? 'sm:!static sm:!w-16 md:!w-20' : ''} transition-all ease-in-out duration-700 sm:absolute sm:w-3/4 md:static`}>
             <Userinfo isShrunk={isShrunk}>
                 <ShrinkButton onClick={handleShrinkToggle} />
             </Userinfo>

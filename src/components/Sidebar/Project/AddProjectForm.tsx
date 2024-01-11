@@ -38,7 +38,7 @@ export function AddProjectForm({closeModal}: AddProjectFormProps) {
     }
 
     return (
-        <form className="w-128 h-1/2 bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif dark:text-black" onSubmit={handleAddProject}>
+        <form className="w-2/3 h-[20rem] bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif dark:text-black" onSubmit={handleAddProject}>
             <span className="w-full flex justify-between">
                 <h1 className="text-2xl font-bold">Add Project Form</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>

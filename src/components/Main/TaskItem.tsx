@@ -77,9 +77,9 @@ export function TaskItem({ id, name, description, deadline, initialStatus, proje
                 <h2 className={`sm:text-sm md:text-lg ${checked ? 'line-through' : ''}`}>{dayOfWeek}</h2>
             </div>
             <div>
-                <span className="cursor-pointer hover:opacity-90" onClick={() => setIsUpdateTaskFormVisible(!isUpdateTaskFormVisible)}>
-                    <Image width={36} height={36} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8 " src={pencilSrc} alt={"Pencil icon"} />
-                    <p className="font-bold text-gray dark:text-white">Edit</p>
+                <span className="cursor-pointer hover:opacity-90 flex flex-col items-center" onClick={() => setIsUpdateTaskFormVisible(!isUpdateTaskFormVisible)}>
+                    <Image width={36} height={36} className="sm:w-6 sm:h-6 md:w-8 md:h-8" src={pencilSrc} alt={"Pencil icon"} />
+                    <p className={`sm:text-sm md:text-lg text-gray dark:text-white font-bold`}>Edit</p>
                 </span>
             </div>
             <div>
