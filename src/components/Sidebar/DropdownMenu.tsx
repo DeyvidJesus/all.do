@@ -50,12 +50,6 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
                             <DarkModeToggle />
                         </li>
                         <li>
-                            <Link className="flex items-center hover:underline" href="">
-                                <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/settings.svg" alt="" />
-                                <p className="sm:text-lg lg:text-xl font-semibold font-serif">Settings</p>
-                            </Link>
-                        </li>
-                        <li>
                             <button className="flex items-center hover:underline" onClick={() => signOut({redirect: true, callbackUrl: '/'})}>
                                 <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/logout.svg" alt="" />
                                 <p className="sm:text-lg lg:text-xl font-semibold font-serif">Logout</p>

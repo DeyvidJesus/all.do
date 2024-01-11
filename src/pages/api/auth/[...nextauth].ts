@@ -18,14 +18,14 @@ const options = {
         const password = credentials?.password;
 
         try {
-          const res = await fetch("http://localhost:3000/api/users/getUser", {
-            method: 'POST',
-            body: JSON.stringify({email, password}),
-            headers: { 
-              Accept: "application/json",
-              "Content-Type": "application/json" 
-            }
-          })
+          const { db } = await connect();
+          const collection = db.collection("users");
+
+          const res = await collection.findOne({ email, password }) || null;
+
+          if(res == null) {
+            return null;
+          }
 
           const user = await res.json();
 
@@ -68,7 +68,7 @@ const options = {
 
       return true;
     },
-    async session({session, user, token}: any) {
+    async session({ session, user, token }: any) {
       // Add the user data to the session
       session.token = token;
       return session;

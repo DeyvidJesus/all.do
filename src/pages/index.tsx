@@ -88,8 +88,6 @@ export default function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} />
 
-                        <Link href="/auth/forgotpass" className="self-end text-dark-blue text-md my-2 font-bold hover:underline">Forgot password?</Link>
-
                         <button type="submit" className="border-2 border-light-gray bg-royal-blue p-2 text-white font-bold text-xl hover:opacity-90">Log in</button>
 
                         <Link href="/auth/register" className="font-bold text-gray text-md self-center mt-2 hover:underline">Don't have an account? <strong className="text-dark-blue">Create an account!</strong></Link>
