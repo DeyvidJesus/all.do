@@ -6,14 +6,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { db } = await connect();
       const collection = db.collection("users");
       
-      const { credentials } = req.body;
-
-      const { name, email, password } = credentials;
+      const { name, email, password } = req.body;
 
       try {
-        const user = await collection.insertOne({ name, email, password });
+        const user = await collection.findOne({email});
 
-        res.status(200).json({ user });
+        if(user) {
+          res.status(200).json({ success: false, error: 'This email is already in use.' });
+          return;
+        }
+
+        await collection.insertOne({ name, email, password });
+
+        res.status(200).json({ success: true, message: 'User created!'});
       } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, error: 'Internal Server Error' });
