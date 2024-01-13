@@ -75,8 +75,10 @@ const options = {
 
       return true;
     },
-    async session({ session, token }) {
-      session.token = token;
+    async session({ session, user, token }) {
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+      
       return session;
     },
   },
