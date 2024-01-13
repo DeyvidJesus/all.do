@@ -42,10 +42,16 @@ const options = {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      authorization: {
+        params: {}
+      }
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
+      authorization: {
+        params: {}
+      }
     }),
   ],
   pages: {
