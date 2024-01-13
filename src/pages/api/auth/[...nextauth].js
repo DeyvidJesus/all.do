@@ -5,7 +5,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import connect from '@/utils/database';
 
 const options = {
-  secret: process.env.NEXTAUTH_SECRET as string,
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -40,12 +40,12 @@ const options = {
       }
     }),
     GithubProvider({
-      clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET,
     }),
     FacebookProvider({
-      clientId: process.env.FACEBOOK_ID as string,
-      clientSecret: process.env.FACEBOOK_SECRET as string,
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET,
     }),
   ],
   pages: {
@@ -53,7 +53,14 @@ const options = {
     error: '/',
   },
   callbacks: {
-    async signIn({ user }: any) {
+    async jwt ({ token, account, profile }) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.id = profile.id;
+      }
+      return token;
+    },
+    async signIn({ user }) {
       const { db } = await connect();
 
       const existingUser = await db.collection('users').findOne({ email: user.email });
@@ -68,8 +75,7 @@ const options = {
 
       return true;
     },
-    async session({ session, user, token }: any) {
-      // Add the user data to the session
+    async session({ session, token }) {
       session.token = token;
       return session;
     },
