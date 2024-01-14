@@ -1,89 +1,32 @@
-import NextAuth from 'next-auth';
-import GithubProvider from 'next-auth/providers/github';
-import FacebookProvider from 'next-auth/providers/facebook';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import connect from '@/utils/database';
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
+import FacebookProvider from "next-auth/providers/facebook";
 
-const options = {
-  secret: process.env.NEXTAUTH_SECRET,
-  providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: 'email', type: 'email' },
-        password: { label: 'password', type: 'password' },
-      },
-      async authorize(credentials) {
-        const email = credentials?.email;
-        const password = credentials?.password;
-
-        try {
-          const { db } = await connect();
-          const collection = db.collection("users");
-
-          const res = await collection.findOne({ email, password }) || null;
-
-          if (res == null) {
-            return null;
-          }
-
-          const user = await res.json();
-
-          if (res.ok && user) {
-            return user;
-          }
-
-          return null;
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    }),
+export const authOptions = {
+  providers: [  
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-      authorization: {
-        params: {}
-      }
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
-      authorization: {
-        params: {}
-      }
-    }),
+    })
   ],
-  pages: {
-    signIn: '/',
-  },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ user }) {
-      const { db } = await connect();
-
-      const existingUser = await db.collection('users').findOne({ email: user.email });
-
-      if (!existingUser) {
-        await db.collection('users').insertOne({
-          name: user.name,
-          email: user.email,
-          password: "",
-        });
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token
       }
-
-      return true;
+      return token
     },
-    async jwt({ token, user }) {
-			user && (token.user = user)
-			return token
-		},
-		async session({ session, token }){
-			session = token.user
-			return session
-		},
-  },
-};
-
-const handler = NextAuth(options)
-
-export { handler as GET, handler as POST, options };
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken
+      return session
+    }
+  }
+}
+export default NextAuth(authOptions)

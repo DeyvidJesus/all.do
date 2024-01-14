@@ -10,10 +10,10 @@ export default function App({
     ...pageProps
   } }: AppProps) {
   return (
-    <SessionProvider session={session}>
-      <DarkModeProvider>
+    <DarkModeProvider>
+      <SessionProvider session={session}>
         <Component {...pageProps} />
-      </DarkModeProvider>
-    </SessionProvider>
+      </SessionProvider>
+    </DarkModeProvider>
   )
 }
