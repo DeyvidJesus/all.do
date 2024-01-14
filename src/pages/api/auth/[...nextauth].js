@@ -59,12 +59,6 @@ const options = {
     error: '/',
   },
   callbacks: {
-    async jwt({ token, account, profile }) {
-      if (account) {
-        token.id_token = account.id_token;
-      }
-      return token;
-    },
     async signIn({ user }) {
       const { db } = await connect();
 
@@ -80,13 +74,17 @@ const options = {
 
       return true;
     },
-    async session(params) {
-      return params.session;
-    },
-    async redirect({ url, baseUrl }) { 
-      return baseUrl 
-    },
+    async jwt({ token, user }) {
+			user && (token.user = user)
+			return token
+		},
+		async session({ session, token }){
+			session = token.user
+			return session
+		},
   },
 };
 
-export default NextAuth(options);
+const handler = NextAuth(options)
+
+export { handler as GET, handler as POST, options };
