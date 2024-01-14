@@ -56,7 +56,6 @@ const options = {
   ],
   pages: {
     signIn: '/',
-    error: '/',
   },
   callbacks: {
     async signIn({ user }) {
