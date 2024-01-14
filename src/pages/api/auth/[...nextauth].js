@@ -23,7 +23,7 @@ const options = {
 
           const res = await collection.findOne({ email, password }) || null;
 
-          if(res == null) {
+          if (res == null) {
             return null;
           }
 
@@ -59,10 +59,9 @@ const options = {
     error: '/',
   },
   callbacks: {
-    async jwt ({ token, account, profile }) {
+    async jwt({ token, account, profile }) {
       if (account) {
-        token.accessToken = account.access_token;
-        token.id = profile.id;
+        token.id_token = account.id_token;
       }
       return token;
     },
@@ -81,11 +80,11 @@ const options = {
 
       return true;
     },
-    async session({ session, user, token }) {
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      
-      return session;
+    async session(params) {
+      return params.session;
+    },
+    async redirect({ url, baseUrl }) { 
+      return baseUrl 
     },
   },
 };
