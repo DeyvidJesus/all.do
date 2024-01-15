@@ -30,7 +30,7 @@ export function FilterMenu() {
         }
 
         fetchProjects();
-    }, [projects])
+    }, [session, projects])
 
     return (
         <ul>
