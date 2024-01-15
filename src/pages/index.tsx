@@ -107,9 +107,9 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
                 destination: "/app/Inbox",
                 permanent: false,
             },
-            props: {
-                session
-            }
+            // props: {
+            //     session
+            // }
         }
     }
 
