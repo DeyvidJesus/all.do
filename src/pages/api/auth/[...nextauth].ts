@@ -81,5 +81,8 @@ export default NextAuth({
 			session = token.user
 			return session
 		},
+	  async redirect({url, baseUrl}): any {
+		  return baseUrl;
+	  }
   },
 });
