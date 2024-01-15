@@ -24,6 +24,7 @@ function Page() {
                 setTimeout(checkSessionStatus, 500);
             } else {
                 // User is authenticated
+                console.log(session);
                 setLoading(false);
             }
         };
