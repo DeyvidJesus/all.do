@@ -4,7 +4,7 @@ import FacebookProvider from 'next-auth/providers/facebook';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import connect from '@/utils/database';
 
-const options = {
+export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
@@ -82,8 +82,4 @@ const options = {
 			return session
 		},
   },
-};
-
-const handler = NextAuth(options)
-
-export { handler as GET, handler as POST, options };
+});
