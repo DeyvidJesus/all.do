@@ -59,17 +59,19 @@ export default NextAuth({
   },
   callbacks: {
     async signIn({ user }: any) {
-      const { db } = await connect();
-
-      const existingUser = await db.collection('users').findOne({ email: user.email });
-
-      if (!existingUser) {
-        await db.collection('users').insertOne({
-          name: user.name,
-          email: user.email,
-          password: "",
-        });
+      const { name, email } = user;
+      const password = ""
+      const userData = {
+        name, email, password
       }
+
+      fetch("/api/users/createUser", {
+        headers: {
+          "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({ userData })
+      })
 
       return true;
     },
