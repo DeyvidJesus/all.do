@@ -5,6 +5,7 @@ import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
 import { AddTaskForm } from "./AddTaskForm";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -23,43 +24,49 @@ interface ItemProps {
 type ApiDataProps = Array<ItemProps>;
 
 export function TaskList({ actualPage, isReady }: TaskListProps) {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const { darkMode } = useDarkMode();
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
     const [isAddTaskFormVisible, setIsAddTaskFormVisible] = useState(false);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
 
     let src = darkMode == true ? '/searchDark.svg' : '/search.svg'
+
+    const checkSessionStatus = () => {
+        if (status === 'unauthenticated') {
+            // The user is not authenticated
+            setLoading(false);
+            router.push("/");
+        } else if (status === 'loading') {
+            // Still loading, wait and check again
+            setTimeout(checkSessionStatus, 500);
+        } else {
+            // User is authenticated
+            console.log(session);
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         async function FetchData() {
             if (!isReady) return;
 
-            if (status === 'unauthenticated') {
-                // The user is not authenticated
-                setLoading(false);
-                router.push("/");
-            } else if (status === 'loading') {
-                // Still loading, wait and check again
-                setTimeout(checkSessionStatus, 500);
-            } else {
-                // User is authenticated
-                setLoading(false);
+            checkSessionStatus();
 
-                let actualPageData = actualPage.toString().toLowerCase();
-                let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
+            let actualPageData = actualPage.toString().toLowerCase();
+            let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
 
-                if (search !== '') {
-                    actualPageData = 'search';
-                    url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
-                }
-
-                const response = await fetch(url);
-
-                const data: ApiDataProps = await response.json();
-                setApiData(data);
+            if (search !== '') {
+                actualPageData = 'search';
+                url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
+
+            const response = await fetch(url);
+
+            const data: ApiDataProps = await response.json();
+            setApiData(data);
         }
 
         FetchData();
