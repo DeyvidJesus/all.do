@@ -99,19 +99,19 @@ export default function Login() {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
-    const session = await getSession(context);
+    // const session = await getSession(context);
 
-    if (session) {
-        return {
-            redirect: {
-                destination: "/app/Inbox",
-                permanent: false,
-            },
+    // if (session) {
+    //     return {
+    //         redirect: {
+    //             destination: "/app/Inbox",
+    //             permanent: false,
+    //         },
             // props: {
             //     session
             // }
-        }
-    }
+    //     }
+    // }
 
     return {
         props: {}
