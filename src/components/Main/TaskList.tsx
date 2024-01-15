@@ -44,7 +44,6 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             setTimeout(checkSessionStatus, 500);
         } else {
             // User is authenticated
-            console.log(session);
             setLoading(false);
         }
     };
@@ -70,7 +69,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         }
 
         FetchData();
-    }, [actualPage, search, isReady, apiData]);
+    }, [actualPage, search, isReady, apiData, session]);
 
     function closeModal(e: React.SyntheticEvent) {
         if (e.target === e.currentTarget) {
