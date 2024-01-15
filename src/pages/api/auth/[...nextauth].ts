@@ -62,7 +62,7 @@ export default NextAuth({
         name, email, password
       }
 
-      await fetch("/api/users/createUser", {
+      await fetch("https://all-do.vercel.app/pages/api/users/createUser", {
         headers: {
           "Content-Type": "application/json"
         },
