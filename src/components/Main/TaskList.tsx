@@ -23,7 +23,7 @@ interface ItemProps {
 type ApiDataProps = Array<ItemProps>;
 
 export function TaskList({ actualPage, isReady }: TaskListProps) {
-    const { data:session } = useSession();
+    const { data: session } = useSession();
     const { darkMode } = useDarkMode();
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
@@ -35,18 +35,30 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         async function FetchData() {
             if (!isReady) return;
 
-            let actualPageData = actualPage.toString().toLowerCase();
-            let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
+            if (status === 'unauthenticated') {
+                // The user is not authenticated
+                setLoading(false);
+                router.push("/");
+            } else if (status === 'loading') {
+                // Still loading, wait and check again
+                setTimeout(checkSessionStatus, 500);
+            } else {
+                // User is authenticated
+                setLoading(false);
 
-            if (search !== '') {
-                actualPageData = 'search';
-                url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
+                let actualPageData = actualPage.toString().toLowerCase();
+                let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
+
+                if (search !== '') {
+                    actualPageData = 'search';
+                    url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
+                }
+
+                const response = await fetch(url);
+
+                const data: ApiDataProps = await response.json();
+                setApiData(data);
             }
-
-            const response = await fetch(url);
-
-            const data: ApiDataProps = await response.json();
-            setApiData(data);
         }
 
         FetchData();
@@ -69,13 +81,13 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
 
             {isAddTaskFormVisible &&
                 <div className="fixed w-full top-0 left-0 h-full flex justify-center items-center bg-transparent-gray scroll" onClick={closeModal}>
-                    <AddTaskForm closeModal={closeModal}/>
+                    <AddTaskForm closeModal={closeModal} />
                 </div>
             }
 
             <ul className="w-full mt-3 divide-y-2 divide-royal-blue dark:divide-white">
                 {apiData.map((item) => (
-                    <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} project={item.project}/>
+                    <TaskItem key={item._id} id={item._id} name={item.name} description={item.description} deadline={item.deadline} initialStatus={item.status} project={item.project} />
                 ))}
             </ul>
 
