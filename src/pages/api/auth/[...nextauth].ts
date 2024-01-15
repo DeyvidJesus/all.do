@@ -73,16 +73,5 @@ export default NextAuth({
 
     //   return true;
     // },
-    async jwt({ token, user }: any) {
-			user && (token.user = user)
-			return token
-		},
-		async session({ session, token }: any){
-			session = token.user
-			return session
-		},
-	  async redirect({url, baseUrl}) {
-		  return baseUrl;
-	  }
   },
 });
