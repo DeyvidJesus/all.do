@@ -62,7 +62,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
                 url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
 
-            await new Promise(resolve => setTimeout(resolve, 5000));
+            await new Promise(resolve => setTimeout(resolve, 10000));
 
             const response = await fetch(url);
 
