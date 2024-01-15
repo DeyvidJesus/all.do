@@ -10,6 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       try {
         const user = await collection.findOne({email});
+        console.log("CREATE USER", name, email, password, user);
 
         if(user) {
           res.status(200).json({ success: false, error: 'This email is already in use.' });
