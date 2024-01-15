@@ -62,7 +62,7 @@ export default NextAuth({
         name, email, password
       }
 
-      fetch("/api/users/createUser", {
+      await fetch("/api/users/createUser", {
         headers: {
           "Content-Type": "application/json"
         },
