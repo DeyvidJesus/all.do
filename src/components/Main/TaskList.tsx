@@ -28,6 +28,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
     const [isAddTaskFormVisible, setIsAddTaskFormVisible] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     let src = darkMode == true ? '/searchDark.svg' : '/search.svg'
 
