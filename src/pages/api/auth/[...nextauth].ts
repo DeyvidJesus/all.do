@@ -54,6 +54,9 @@ export default NextAuth({
       }
     }),
   ],
+  pages: {
+    signIn: '/',
+  },
   callbacks: {
     async signIn({ user }: any) {
       const { name, email } = user;
