@@ -100,6 +100,7 @@ export default function Login() {
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
     const session = await getSession(context);
+    console.log(session);
 
     if (session) {
         return {
