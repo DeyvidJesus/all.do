@@ -14,16 +14,16 @@ export default NextAuth({
         password: { label: 'password', type: 'password' },
       },
       async authorize(credentials) {
-        const email = credentials?.email;
-        const password = credentials?.password;
-
         try {
-          const { db } = await connect();
-          const collection = db.collection("users");
+          const res = await fetch("/api/users/getUserLogin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({credentials})
+          });
 
-          const res = await collection.findOne({ email, password });
-
-          if (res == null) {
+          if (!res) {
             return null;
           }
 
