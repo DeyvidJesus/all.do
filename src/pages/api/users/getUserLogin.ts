@@ -5,8 +5,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { db } = await connect();
     const collection = db.collection("users");
 
-    const { credentials } = req.body;
-    const { email, password } = credentials;
+    const { email, password } = req.body;
 
     try {
         const user = await collection.findOne({ email, password });
