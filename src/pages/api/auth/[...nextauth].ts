@@ -29,7 +29,7 @@ export default NextAuth({
 
           const user = await res.json();
 
-          if (res.ok && user) {
+          if (user) {
             return user;
           }
 
@@ -60,10 +60,10 @@ export default NextAuth({
       }
 
       await fetch("https://all-do.vercel.app/pages/api/users/createUser", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        method: "POST",
         body: JSON.stringify({ userData })
       })
 
