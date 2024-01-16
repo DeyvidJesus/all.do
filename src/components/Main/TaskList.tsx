@@ -46,11 +46,11 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             if (!isReady) return;
 
             let actualPageData = actualPage.toString().toLowerCase();
-            let url = `https://all-do.vercel.app/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
+            let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
 
             if (search !== '') {
                 actualPageData = 'search';
-                url = `https://all-do.vercel.app/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
+                url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
 
             const response = await fetch(url);
