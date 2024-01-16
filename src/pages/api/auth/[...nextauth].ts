@@ -29,11 +29,7 @@ export default NextAuth({
 
           const user = await res.json();
 
-          if (user) {
-            return user;
-          }
-
-          return null;
+          return user;
         } catch (err) {
           console.log(err);
         }
