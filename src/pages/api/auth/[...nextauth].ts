@@ -2,7 +2,6 @@ import NextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import FacebookProvider from 'next-auth/providers/facebook';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import connect from '@/utils/database';
 
 export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -24,6 +23,7 @@ export default NextAuth({
           });
 
           if (!res) {
+            console.log("res is null!");
             return null;
           }
 
