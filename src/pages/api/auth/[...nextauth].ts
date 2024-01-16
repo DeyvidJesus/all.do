@@ -17,7 +17,7 @@ export default NextAuth({
         const password = credentials?.password;
 
         try {
-          const res = await fetch(`https://all-do.vercel.app/pages/api/users/getUserLogin?email=${email}&password=${password}`);
+          const res = await fetch(`https://all-do.vercel.app/api/users/getUserLogin?email=${email}&password=${password}`);
 
           if (!res) {
             console.log("res is null!");
@@ -52,7 +52,7 @@ export default NextAuth({
         name, email, password
       }
 
-      await fetch("https://all-do.vercel.app/pages/api/users/createUser", {
+      await fetch("https://all-do.vercel.app/api/users/createUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
