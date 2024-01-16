@@ -14,7 +14,7 @@ export default NextAuth({
       },
       async authorize(credentials) {
         try {
-          const res = await fetch("/api/users/getUserLogin", {
+          const res = await fetch("https://all-do.vercel.app/pages/api/users/getUserLogin", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
