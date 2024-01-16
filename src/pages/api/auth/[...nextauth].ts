@@ -23,7 +23,7 @@ export default NextAuth({
 
           const res = await collection.findOne({ email, password });
 
-          if (!res) {
+          if (res == null) {
             return null;
           }
 
