@@ -63,7 +63,9 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     };
 
     useEffect(() => {
-        checkSessionStatus();
+        setTimeout(() => {
+            checkSessionStatus();
+        }, 5000);
     }, [session, actualPage]);
 
     function closeModal(e: React.SyntheticEvent) {
