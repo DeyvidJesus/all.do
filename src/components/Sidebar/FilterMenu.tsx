@@ -17,20 +17,20 @@ export function FilterMenu() {
 
     const [projects, setProjects] = useState([]);
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                const response = await fetch(`/api/projects/getProjects?user_email=${session?.user?.email}`);
+    // useEffect(() => {
+    //     const fetchProjects = async () => {
+    //         try {
+    //             const response = await fetch(`/api/projects/getProjects?user_email=${session?.user?.email}`);
 
-                const data = await response.json();
-                setProjects(data);
-            } catch (err) {
-                console.log("Error while fetching projects data", err)
-            }
-        }
+    //             const data = await response.json();
+    //             setProjects(data);
+    //         } catch (err) {
+    //             console.log("Error while fetching projects data", err)
+    //         }
+    //     }
 
-        fetchProjects();
-    }, [session])
+    //     fetchProjects();
+    // }, [session])
 
     return (
         <ul>
