@@ -26,7 +26,7 @@ export default function Login() {
         e.preventDefault();
 
         await signIn('credentials', {
-            redirect: true,
+            redirect: false,
             email,
             password,
         })
