@@ -15,19 +15,9 @@ export default NextAuth({
       async authorize(credentials) {
         const email = credentials?.email;
         const password = credentials?.password;
-        const userData = {
-          email,
-          password,
-        }
 
         try {
-          const res = await fetch("https://all-do.vercel.app/pages/api/users/getUserLogin", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userData })
-          });
+          const res = await fetch(`https://all-do.vercel.app/pages/api/users/getUserLogin?email=${email}&password=${password}`);
 
           if (!res) {
             console.log("res is null!");
