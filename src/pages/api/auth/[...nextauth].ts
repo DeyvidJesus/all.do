@@ -15,6 +15,10 @@ export default NextAuth({
       async authorize(credentials) {
         const email = credentials?.email;
         const password = credentials?.password;
+        const userData = {
+          email,
+          password,
+        }
 
         try {
           const res = await fetch("https://all-do.vercel.app/pages/api/users/getUserLogin", {
@@ -22,7 +26,7 @@ export default NextAuth({
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ userData })
           });
 
           if (!res) {
@@ -64,7 +68,7 @@ export default NextAuth({
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ userData })
-      })
+      });
 
       return true;
     },
