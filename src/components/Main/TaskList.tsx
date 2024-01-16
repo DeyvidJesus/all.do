@@ -4,8 +4,9 @@ import { AddTaskButton } from "./AddTaskButton";
 import { TaskItem } from "./TaskItem";
 import { useDarkMode } from "@/context/useDarkMode";
 import { AddTaskForm } from "./AddTaskForm";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { GetServerSideProps, GetStaticProps } from "next";
 
 interface TaskListProps {
     actualPage: string | string[],
@@ -29,12 +30,12 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
     const [search, setSearch] = useState('');
     const [apiData, setApiData] = useState<ApiDataProps>([]);
     const [isAddTaskFormVisible, setIsAddTaskFormVisible] = useState(false);
-    const [loading, setLoading] = useState(true);
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
 
     let src = darkMode == true ? '/searchDark.svg' : '/search.svg'
 
-    const checkSessionStatus = () => {
+    const checkSessionStatus = async () => {
         if (status === 'unauthenticated') {
             // The user is not authenticated
             setLoading(false);
@@ -43,16 +44,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             // Still loading, wait and check again
             setTimeout(checkSessionStatus, 500);
         } else {
-            // User is authenticated
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        async function FetchData() {
             if (!isReady) return;
-
-            checkSessionStatus();
 
             let actualPageData = actualPage.toString().toLowerCase();
             let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
@@ -62,16 +54,18 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
                 url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
 
-            await new Promise(resolve => setTimeout(resolve, 10000));
-
             const response = await fetch(url);
 
             const data: ApiDataProps = await response.json();
             setApiData(data);
-        }
 
-        FetchData();
-    }, [actualPage, search, isReady, apiData, session]);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        checkSessionStatus();
+    }, [session, actualPage]);
 
     function closeModal(e: React.SyntheticEvent) {
         if (e.target === e.currentTarget) {

@@ -8,7 +8,7 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
-      name: "credentials",
+      name: "Credentials",
       credentials: {
         email: { label: 'email', type: 'email' },
         password: { label: 'password', type: 'password' },
@@ -21,9 +21,9 @@ export default NextAuth({
           const { db } = await connect();
           const collection = db.collection("users");
 
-          const res = await collection.findOne({ email, password }) || null;
+          const res = await collection.findOne({ email, password });
 
-          if (res == null) {
+          if (!res) {
             return null;
           }
 
@@ -42,16 +42,10 @@ export default NextAuth({
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
-      authorization: {
-        params: {}
-      },
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_ID as string,
       clientSecret: process.env.FACEBOOK_SECRET as string,
-      authorization: {
-        params: {}
-      }
     }),
   ],
   pages: {

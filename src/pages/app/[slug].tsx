@@ -23,8 +23,6 @@ function Page() {
                 // Still loading, wait and check again
                 setTimeout(checkSessionStatus, 500);
             } else {
-                // User is authenticated
-                console.log(session);
                 setLoading(false);
             }
         };
