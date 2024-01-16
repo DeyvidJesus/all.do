@@ -20,7 +20,7 @@ export function FilterMenu() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const response = await fetch(`/api/projects/getProjects?user_email=${session?.user?.email}`);
+                const response = await fetch(`https://all-do.vercel.app/pages/api/projects/getProjects?user_email=${session?.user?.email}`);
 
                 const data = await response.json();
                 setProjects(data);
