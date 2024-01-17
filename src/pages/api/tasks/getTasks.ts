@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     user_email
                 };
                 break;
-            case 'todos':
+            case 'todas':
                 query = { user_email }
                 break;
             case 'pesquisa':
