@@ -41,8 +41,8 @@ export function DeleteTaskButton({ id }: DeleteTaskProps) {
 
     return (
         <div>
-            <button className="flex flex-col items-center text-red ml-4 hover:brightness-75" onClick={handleDeleteTask}>
-                <Image className="sm:w-6 sm:h-6 md:w-8 md:h-8" src={'/trash.svg'} width={32} height={32} alt='' />
+            <button className="flex flex-col items-center text-red hover:brightness-75" onClick={handleDeleteTask}>
+                <Image className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" src={'/trash.svg'} width={32} height={32} alt='' />
                 <h2 className={`sm:text-sm md:text-lg`}>Delete</h2>
             </button>
 
