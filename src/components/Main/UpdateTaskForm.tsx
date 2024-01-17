@@ -75,7 +75,7 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
             </span>
             <div className="flex flex-col justify-between w-full h-full my-4">
                 <span className="w-full flex">
-                    <label className="font-semibold text-lg" htmlFor="status">Task Status:</label>
+                    <label className="font-semibold text-lg" htmlFor="status">Status:</label>
 
                     <input className="sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full appearance-none border-solid border-gray border checked:bg-dark-blue checked:dark:bg-royal-blue cursor-pointer dark:border-white ml-4" type="checkbox" name="status" checked={checked} onChange={handleCheckboxChange} />
 
@@ -83,17 +83,17 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
                 </span>
 
                 <span className="w-full">
-                    <label className="font-semibold text-lg" htmlFor="name">Task Name:</label>
+                    <label className="font-semibold text-lg" htmlFor="name">Nome da Tarefa:</label>
                     <input className="p-1 w-full border-2 rounded border-gray" type="text" name="name" id="name" onChange={handleChange} defaultValue={name} />
                 </span>
 
                 <span className="w-full flex flex-col">
-                    <label className="font-semibold text-lg" htmlFor="description">Task Description:</label>
+                    <label className="font-semibold text-lg" htmlFor="description">Descrição da Tarefa:</label>
                     <input className="p-1 w-full border-2 rounded border-gray" type="text" name="description" id="description" onChange={handleChange} defaultValue={description} />
                 </span>
 
                 <span className="w-full flex flex-col">
-                    <label className="font-semibold text-lg" htmlFor="description">Task Deadline:</label>
+                    <label className="font-semibold text-lg" htmlFor="description">Prazo:</label>
                     <input className="p-1 w-full border-2 rounded border-gray" type="date" name="deadline" id="deadline" onChange={handleChange} />
                 </span>
 
@@ -107,7 +107,7 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
                 </select>
 
                 <span className="w-full">
-                    <button className="w-full p-2 bg-dark-blue text-white rounded font-semibold hover:opacity-90 text-lg" type="submit">Update Task</button>
+                    <button className="w-full p-2 bg-dark-blue text-white rounded font-semibold hover:opacity-90 text-lg" type="submit">Atualizar Tarefa</button>
                 </span>
             </div>
         </form>
