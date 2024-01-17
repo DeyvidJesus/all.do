@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { user_email } = req.query;
 
     try {
-        const projectsData = await collection.find({user_email}).toArray();
+        const projectsData = await collection.find({ user_email }).toArray();
         res.status(200).json(projectsData);
     } catch (err) {
         console.log(err)

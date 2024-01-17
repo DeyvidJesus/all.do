@@ -50,7 +50,7 @@ export function TaskItem({ id, name, description, deadline, initialStatus, proje
     function getDayOfWeek(date: string) {
         const parsedDate = parse(date, 'MM/dd/yyyy', new Date());
         const dayIndex = getDay(parsedDate);
-        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const daysOfWeek = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
         return daysOfWeek[dayIndex];
     }
 
@@ -82,7 +82,7 @@ export function TaskItem({ id, name, description, deadline, initialStatus, proje
                 <div>
                     <span className="cursor-pointer hover:opacity-90 flex flex-col items-center mx-4" onClick={() => setIsUpdateTaskFormVisible(!isUpdateTaskFormVisible)}>
                         <Image width={36} height={36} className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" src={pencilSrc} alt={"Pencil icon"} />
-                        <p className={`sm:text-sm md:text-lg text-gray dark:text-white`}>Edit</p>
+                        <p className={`sm:text-sm md:text-lg text-gray dark:text-white`}>Editar</p>
                     </span>
                 </div>
                 <div>

@@ -18,7 +18,7 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
         name: '',
         description: '',
         deadline: '',
-        project: 'inbox',
+        project: 'caixa-de-entrada',
         user_email: session?.user?.email,
     });
 
@@ -64,29 +64,29 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
     return (
         <form className="w-2/3 h-[28rem] bg-light-blue px-8 py-4 rounded-lg flex flex-col items-center font-serif" onSubmit={handleAddTask}>
             <span className="w-full flex justify-between">
-                <h1 className="text-2xl font-bold">Add Task Form</h1>
+                <h1 className="text-2xl font-bold">Adicionar Tarefa</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>
             </span>
             <div className="flex flex-col justify-between w-full h-full my-4">
                 <span className="w-full">
-                    <label className="font-semibold text-lg" htmlFor="name">Task Name:</label>
-                    <input className="p-1 w-full border-2 rounded border-gray" type="text" name="name" id="name" onChange={handleChange} />
+                    <label className="font-semibold text-lg" htmlFor="name">Nome da Tarefa:</label>
+                    <input required className="p-1 w-full border-2 rounded border-gray" type="text" name="name" id="name" onChange={handleChange} />
                 </span>
 
                 <span className="w-full">
-                    <label className="font-semibold text-lg" htmlFor="description">Task Description:</label>
+                    <label className="font-semibold text-lg" htmlFor="description">Descrição da Tarefa:</label>
                     <input className="p-1 w-full border-2 rounded border-gray" type="text" name="description" id="description" onChange={handleChange} />
                 </span>
 
                 <span className="w-full">
-                    <label className="font-semibold text-lg" htmlFor="deadline">Task Deadline:</label>
-                    <input className="p-1 w-full border-2 rounded border-gray" type="date" name="deadline" id="deadline" onChange={handleChange} />
+                    <label className="font-semibold text-lg" htmlFor="deadline">Prazo:</label>
+                    <input required className="p-1 w-full border-2 rounded border-gray" type="date" name="deadline" id="deadline" onChange={handleChange} />
                 </span>
 
                 <span className="w-full flex flex-col">
-                    <label className="font-semibold text-lg" htmlFor="project">Task Project:</label>
-                    <select className="rounded p-1" name="project" id="project" onChange={handleChange}>
-                        <option value="inbox">Inbox</option>
+                    <label className="font-semibold text-lg" htmlFor="project">Projeto da Tarefa:</label>
+                    <select required className="rounded p-1" name="project" id="project" onChange={handleChange}>
+                        <option value="caixa-de-entrada">Caixa de entrada</option>
                         {projects.length > 0 && projects.map((project: projectData) => (
                             <option key={project._id} value={project.name.toLowerCase()}>
                                 {project.name}
@@ -96,7 +96,7 @@ export function AddTaskForm({ closeModal }: AddTaskFormProps) {
                 </span>
 
                 <span className="w-full">
-                    <button className="w-full p-2 bg-dark-blue text-white rounded font-semibold hover:opacity-90 text-lg" type="submit">Add Task</button>
+                    <button className="w-full p-2 bg-dark-blue text-white rounded font-semibold hover:opacity-90 text-lg" type="submit">Adicionar Tarefa</button>
                 </span>
             </div>
         </form>

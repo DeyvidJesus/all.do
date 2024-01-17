@@ -70,7 +70,7 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
     return (
         <form className="w-2/3 h-[28rem] bg-light-gray px-8 py-4 rounded-lg flex flex-col items-center font-serif cursor-default dark:text-black" onSubmit={handleUpdateTask}>
             <span className="w-full flex justify-between">
-                <h1 className="text-2xl font-bold">Update Project Form</h1>
+                <h1 className="text-2xl font-bold">Atualizar Tarefa</h1>
                 <button className="text-2xl font-bold" onClick={closeModal}>X</button>
             </span>
             <div className="flex flex-col justify-between w-full h-full my-4">
@@ -98,7 +98,7 @@ export function UpdateTaskForm({ closeModal, name, id, description, deadline, st
                 </span>
 
                 <select className="rounded p-1" name="project" id="project" onChange={handleChange}>
-                    <option value="inbox">Inbox</option>
+                    <option value="caixa-de-entrada">Caixa de Entrada</option>
                     {projects.length > 0 && projects.map((project: projectData) => (
                         <option key={project._id} value={project.name.toLowerCase()}>
                             {project.name}

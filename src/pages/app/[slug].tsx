@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 function Page() {
     const router = useRouter();
     const { query, isReady } = router;
-    const actualPage = isReady ? (query.slug || 'Inbox') : '/';
-    const title = `All.do | ${actualPage}`;
+    const actualPage = isReady ? (query.slug || 'Caixa-de-entrada') : '/';
+    const title = `All.do | ${actualPage}`; 
     const { data: session, status } = useSession();
     const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ function Page() {
             </Head>
             <main className="flex dark:bg-dark-blue">
                 <Sidebar />
-                <TaskList actualPage={actualPage} isReady={isReady} />
+                <TaskList actualPage={actualPage as string} isReady={isReady} />
             </main>
         </>
     );

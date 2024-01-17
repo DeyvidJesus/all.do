@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 interface TaskListProps {
-    actualPage: string | string[],
+    actualPage: string,
     isReady: boolean
 }
 
@@ -49,7 +49,7 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
             let url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}`;
 
             if (search !== '') {
-                actualPageData = 'search';
+                actualPageData = 'pesquisa';
                 url = `/api/tasks/getTasks?actualPage=${actualPageData}&user_email=${session?.user?.email}&search=${search}`;
             }
 
@@ -76,9 +76,9 @@ export function TaskList({ actualPage, isReady }: TaskListProps) {
         <div className="flex flex-col sm:px-8 md:px-16 py-8 w-full min-h-screen h-full">
             <div className="flex items-center w-full bg-royal-blue p-2 rounded dark:bg-white">
                 <Image className="sm:w-7 sm:h-7" width={32} height={32} src={src} alt="" />
-                <input type="text" name="search" id="search" placeholder="Search" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
+                <input type="text" name="search" id="search" placeholder="Pesquisar" className="ml-5 w-full rounded p-1 font-serif text-lg" value={search} onChange={(e) => { setSearch(e.target.value) }} />
             </div>
-            <h1 className="font-serif sm:text-2xl md:text-3xl lg:text-4xl font-semibold my-5 dark:text-white">{actualPage}</h1>
+            <h1 className="font-serif sm:text-2xl md:text-3xl lg:text-4xl font-semibold my-5 dark:text-white">{actualPage.replaceAll("-", " ")}</h1>
             <AddTaskButton onClick={() => setIsAddTaskFormVisible(!isAddTaskFormVisible)} />
 
             {isAddTaskFormVisible &&

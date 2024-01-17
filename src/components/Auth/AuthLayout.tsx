@@ -14,8 +14,8 @@ export function AuthLayout({ children }: AuthLayoutProps) {
             <div className="lg:visible lg:flex w-1/2 bg-royal-blue flex-col items-center justify-evenly py-4 hidden invisible">
                 <Image src="/authImage.svg" alt="" width={450} height={450} />
                 <div className="flex flex-col items-center text-white font-serif text-2xl text-center">
-                    <h2 className="font-bold">Efficiency Unleashed: <br /> Streamline Your Day with All.do</h2>
-                    <p className="text-xl mt-2">Your Tasks, Your Way!</p>
+                    <h2 className="font-bold">Organize seu mundo: <br /> otimize seus dias com All.do</h2>
+                    <p className="text-xl mt-2">Seus objetivos, Seu caminho!</p>
                 </div>
             </div>
         </div>

@@ -33,7 +33,6 @@ export function DeleteProjectButton({ id, name }: DeleteProjectProps) {
 
             await router.push('/tasks/Inbox');
             window.location.reload();
-            // console.log("HERE",id, name.toLowerCase())
         } catch (error) {
             console.error('Error updating status:', error);
         } finally {
@@ -49,12 +48,12 @@ export function DeleteProjectButton({ id, name }: DeleteProjectProps) {
         <div className="self-center">
             <button type="button" className="flex flex-col items-center text-red ml-4 hover:brightness-75" onClick={handleDeleteTask}>
                 <Image src={'/trash.svg'} width={24} height={24} alt='' />
-                <h2 className={`sm:text-sm md:text-lg`}>Delete</h2>
+                <h2 className={`sm:text-sm md:text-lg`}>Deletar</h2>
             </button>
 
             {isConfirmationVisible && (
                 <ConfirmationPopup
-                    message="Are you sure you want to delete this project?"
+                    message="Você tem certeza que quer deletar este projeto?"
                     onConfirm={handleConfirmDelete}
                     onCancel={handleCancelDelete}
                 />

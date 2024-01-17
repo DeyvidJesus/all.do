@@ -32,7 +32,7 @@ export default function Login() {
         })
             .then((response) => {
                 console.log(response);
-                router.replace('/app/Inbox');
+                router.replace('/app/Caixa-de-entrada');
             })
             .catch((error) => {
                 console.log(error);
@@ -51,8 +51,8 @@ export default function Login() {
                         <h1 className="text-3xl font-bold text-dark-blue ml-3" translate="no">All.do</h1>
                     </span>
                     <div>
-                        <h2 className="text-3xl font-bold mt-2">Log in to your account.</h2>
-                        <h3 className="text-gray text-lg mb-2">Welcome back! You can use social log in:</h3>
+                        <h2 className="text-3xl font-bold mt-2">Faça login na sua conta.</h2>
+                        <h3 className="text-gray text-lg mb-2">Bem-vindo de volta! Você pode fazer login social:</h3>
                         <span className="flex justify-between">
                             <button className="w-1/2 flex justify-center items-center border-solid border-2 border-light-gray py-2 mr-2 hover:opacity-80"
                                 onClick={() => signIn('github')}
@@ -68,13 +68,13 @@ export default function Login() {
                     </div>
                     <span className="flex justify-between w-full items-center text-gray font-bold my-2">
                         <hr className="md:w-1/3 w-1/4 border-[1px]" />
-                        <p className="text-sm sm:text-md ">Or use your email</p>
+                        <p className="text-sm sm:text-md ">Ou usar o seu email</p>
                         <hr className="md:w-1/3 w-1/4 border-[1px]" />
                     </span>
                     <form className="flex flex-col" onSubmit={handleSubmit}>
                         {invalidCredentials == true && (
                             <div className="w-full rounded text-red text-2xl bg-red bg-opacity-30 text-center p-1">
-                                <h2>Invalid credentials, please try again</h2>
+                                <h2>Credenciais inválidas, por favor tente novamente!</h2>
                             </div>
                         )}
 
@@ -83,14 +83,14 @@ export default function Login() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)} />
 
-                        <label htmlFor="password" className="text-lg font-bold text-gray mt-2">Password:</label>
+                        <label htmlFor="password" className="text-lg font-bold text-gray mt-2">Senha:</label>
                         <input type="password" name="password" id="password" className="border-2 border-light-gray p-2 text-lg"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)} />
 
-                        <button type="submit" className="border-2 border-light-gray bg-royal-blue p-2 text-white font-bold text-xl hover:opacity-90">Log in</button>
+                        <button type="submit" className="border-2 border-light-gray bg-royal-blue p-2 text-white font-bold text-xl hover:opacity-90">Login!</button>
 
-                        <Link href="/auth/register" className="font-bold text-gray text-md self-center mt-2 hover:underline">Don't have an account? <strong className="text-dark-blue">Create an account!</strong></Link>
+                        <Link href="/auth/cadastro" className="font-bold text-gray text-md self-center mt-2 hover:underline">Não tem uma conta? <strong className="text-dark-blue">Cadastre-se!</strong></Link>
                     </form>
                 </div>
             </AuthLayout>
@@ -105,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     if (session) {
         return {
             redirect: {
-                destination: "/app/Inbox",
+                destination: "/app/Caixa-de-Entrada",
                 permanent: false,
             },
             props: {

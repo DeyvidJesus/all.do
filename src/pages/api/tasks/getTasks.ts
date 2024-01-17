@@ -11,11 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         let query;
 
         switch (actualPage) {
-            case 'today':
+            case 'hoje':
                 const todayDateString = new Date().toLocaleDateString('en-US');
                 query = { deadline: todayDateString, user_email }
                 break;
-            case 'upcoming':
+            case 'em-breve':
                 const today = new Date().toLocaleDateString('en-US');
 
                 query = {
@@ -25,10 +25,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     user_email
                 };
                 break;
-            case 'all':
+            case 'todos':
                 query = { user_email }
                 break;
-            case 'search':
+            case 'pesquisa':
                 query = {
                     $and: [
                         { user_email },

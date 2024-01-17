@@ -43,12 +43,12 @@ export function DeleteTaskButton({ id }: DeleteTaskProps) {
         <div>
             <button className="flex flex-col items-center text-red hover:brightness-75" onClick={handleDeleteTask}>
                 <Image className="sm:w-6 sm:h-6 lg:w-8 lg:h-8" src={'/trash.svg'} width={32} height={32} alt='' />
-                <h2 className={`sm:text-sm md:text-lg`}>Delete</h2>
+                <h2 className={`sm:text-sm md:text-lg`}>Deletar</h2>
             </button>
 
             {isConfirmationVisible && (
                 <ConfirmationPopup
-                    message="Are you sure you want to delete this task?"
+                    message="Você tem certeza que gostaria de deletar esta tarefa?"
                     onConfirm={handleConfirmDelete}
                     onCancel={handleCancelDelete}
                 />

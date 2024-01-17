@@ -52,7 +52,7 @@ export function DropdownMenu({ username, isShrunk, children }: UserInfo) {
                         <li>
                             <button className="flex items-center hover:underline" onClick={() => signOut({redirect: true, callbackUrl: '/'})}>
                                 <Image width={24} height={24} className="sm:w-5 sm:h-5 m-2" src="/logout.svg" alt="" />
-                                <p className="sm:text-lg lg:text-xl font-semibold font-serif">Logout</p>
+                                <p className="sm:text-lg lg:text-xl font-semibold font-serif">Sair</p>
                             </button>
                         </li>
                     </ul>
