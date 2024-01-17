@@ -72,7 +72,8 @@ export function TaskItem({ id, name, description, deadline, initialStatus, proje
                 <h1 className={`font-bold md:text-lg lg:text-xl ${checked ? 'line-through' : ''}`}>{name}</h1>
                 <p className={`md:text-base lg:text-lg ${checked ? 'line-through' : ''}`}>{description}</p>
             </div>
-            <div className="flex flex-col items-center ml-auto w-24">
+            <div className="flex sm:flex-col items-center md:flex-row">
+                <div className="flex flex-col items-center ml-auto w-24">
                 <Image className="sm:w-6 sm:h-6 md:w-8 md:h-8" src={calendarSrc} alt='' width={32} height={32} />
                 <h2 className={`sm:text-sm md:text-lg ${checked ? 'line-through' : ''}`}>{dayOfWeek}</h2>
             </div>
@@ -84,6 +85,7 @@ export function TaskItem({ id, name, description, deadline, initialStatus, proje
             </div>
             <div>
                 <DeleteTaskButton id={id} />
+            </div>
             </div>
 
             {isUpdateTaskFormVisible && (
