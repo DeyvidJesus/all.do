@@ -36,7 +36,7 @@ export function FilterMenu() {
         <ul>
             <FilterItem icon={srcObj.inboxSrc} name="Caixa-de-Entrada" />
             <FilterItem icon={srcObj.todaySrc} name="Hoje" />
-            <FilterItem icon={srcObj.upcomingSrc} name="Em breve" />
+            <FilterItem icon={srcObj.upcomingSrc} name="Em-breve" />
             <FilterItem icon={srcObj.allSrc} name="Todas" />
             {projects.length > 0 && projects.map((project: projectData) => (
                 <FilterItem key={project._id} icon={""} id={project._id} name={project.name} color={project.color}/>
