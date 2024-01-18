@@ -1,6 +1,6 @@
 <h1>✅ All.do</h1>
 
-<p style="font-size:1.1rem;">Um aplicativo web desenvolvido com Next.js, MongoDB e NextAuth, que permite aos usuários adicionar tarefas com informações detalhadas, criar projetos,  e organizar suas tarefas de maneira  <br>
+<p style="font-size:1.1rem;">Um aplicativo web desenvolvido com Next.js, MongoDB e NextAuth, que permite aos usuários adicionar tarefas com informações detalhadas, criar projetos,  e organizar suas tarefas de maneira  <br><br>
     O projeto possui login social com Github e com Facebook, além de ter login com credenciais, no caso, email e senha. É possivel adicionar tarefas e dar um nome, uma descrição, um prazo e atribuir a um projeto. Há também a possibilidade de criar projetos que funcionam como filtros onde somente aparecem tarefas relacionadas a eles. O usuário também pode alternar entre modo claro e modo escuro do site. Por fim, ele pode utilizar o campo de pesquisa para procurar por uma tarefa especifíca.
 </p>
 <a href="https://all-do.vercel.app/" target="_blank">🧷 Link do Projeto</a>
